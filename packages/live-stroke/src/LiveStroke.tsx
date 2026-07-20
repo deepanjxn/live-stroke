@@ -50,7 +50,16 @@ export function LiveStroke({
   const duration = DURATION_MAP[speed];
   const gradientOpacity = opacity / 100 * 0.9 + 0.1;
   const anim = `ls-spin ${duration}s linear infinite`;
-  const totalRadius = radius + padding;
+
+  const childRadius = (children as React.ReactElement<{ style?: React.CSSProperties }>).props?.style?.borderRadius;
+  const hasChildRadius = childRadius !== undefined && childRadius !== null;
+
+  const innerRadius = hasChildRadius ? childRadius : radius;
+  const outerRadius = hasChildRadius
+    ? typeof childRadius === "number"
+      ? childRadius + padding
+      : childRadius
+    : radius + padding;
 
   return (
     <div style={{ position: "relative", display: "inline-flex" }}>
@@ -62,7 +71,7 @@ export function LiveStroke({
             left: -padding,
             right: -padding,
             bottom: -padding,
-            borderRadius: totalRadius,
+            borderRadius: outerRadius,
             backgroundImage: GRADIENT,
             backgroundOrigin: "border-box",
             backgroundClip: "border-box",
@@ -77,7 +86,7 @@ export function LiveStroke({
         style={{
           position: "relative",
           border: `${padding}px solid transparent`,
-          borderRadius: totalRadius,
+          borderRadius: outerRadius,
           overflow: "hidden",
           backgroundImage: gradientWithAlpha(gradientOpacity),
           backgroundOrigin: "border-box",
@@ -90,7 +99,7 @@ export function LiveStroke({
         <div
           style={{
             position: "relative",
-            borderRadius: radius,
+            borderRadius: innerRadius,
             overflow: "hidden",
           }}
         >

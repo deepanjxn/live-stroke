@@ -1,15 +1,24 @@
 {
   "name": "live-stroke",
   "version": "0.1.0",
-  "description": "Animated gradient borders for React buttons",
+  "description": "Animated gradient border wrapper for React components with automatic border-radius inheritance",
   "license": "MIT",
   "author": "Deepanjan Sen",
   "repository": {
     "type": "git",
-    "url": "https://github.com/deepanjxn/live-stroke"
+    "url": "git+https://github.com/deepanjxn/live-stroke.git"
   },
-  "homepage": "https://d-s.me/",
-  "keywords": ["react", "button", "gradient", "border", "animation"],
+  "bugs": {
+    "url": "https://github.com/deepanjxn/live-stroke/issues"
+  },
+  "homepage": "https://github.com/deepanjxn/live-stroke",
+  "keywords": [
+    "react",
+    "button",
+    "gradient",
+    "border",
+    "animation"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -26,9 +35,12 @@
       }
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && node scripts/postbuild.mjs",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist"
