@@ -13,8 +13,8 @@ function gradientWithAlpha(alpha: number): string {
   return `conic-gradient(from var(--ls-angle, 18deg), ${t("#F45523", alpha)} 0%, ${t("#00DA7C", alpha)} 20%, ${t("#3B5FFF", alpha)} 40%, ${t("#9A80C3", alpha)} 60%, ${t("#D7F986", alpha)} 80%, ${t("#F45523", alpha)} 100%)`;
 }
 
-const STROKE_MAP = { sm: 0.5, md: 1, lg: 1.5 } as const;
-const DURATION_MAP = { slow: 6, normal: 4, fast: 2 } as const;
+const STROKE_MAP = { sm: 1, md: 2, lg: 3 } as const;
+const DURATION_MAP = { slow: 5, normal: 3.5, fast: 2 } as const;
 
 export function LiveStroke({
   children,
