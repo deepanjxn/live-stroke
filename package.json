@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "pnpm -F live-stroke build",
-    "dev": "pnpm -F playground dev",
+    "dev": "pnpm -F website dev",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "typecheck": "pnpm -r run typecheck",
