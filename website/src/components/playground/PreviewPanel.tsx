@@ -1,4 +1,4 @@
-import { LiveStroke } from "live-stroke";
+import { LiveStroke } from "../LiveStroke";
 import type { PlaygroundState } from "./ControlPanel";
 import { DEFAULTS } from "./ControlPanel";
 

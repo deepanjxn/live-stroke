@@ -4,6 +4,8 @@
   "scripts": {
     "build": "pnpm -F live-stroke build",
     "dev": "pnpm -F website dev",
+    "build:lib": "pnpm -F live-stroke build",
+    "build:site": "pnpm -F website build",
     "lint": "eslint . --ext .ts,.tsx",
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "typecheck": "pnpm -r run typecheck",

@@ -1,4 +1,4 @@
-import { LiveStroke } from "live-stroke";
+import { LiveStroke } from "../LiveStroke";
 import Container from "../layout/Container";
 import Section from "../layout/Section";
 
