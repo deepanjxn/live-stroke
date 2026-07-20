@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "description": "Animated gradient borders for React buttons",
   "license": "MIT",
-  "author": "",
+  "author": "Deepanjan Sen",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/deepanjxn/live-stroke"
   },
-  "homepage": "",
+  "homepage": "https://d-s.me/",
   "keywords": ["react", "button", "gradient", "border", "animation"],
   "type": "module",
   "main": "./dist/index.cjs",

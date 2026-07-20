@@ -25,9 +25,12 @@
 @theme {
   --color-primary: #020100;
   --color-secondary: #606060;
-  --color-gray-50: #f9f9f9;
+  --color-gray-50: #f5f5f5;
   --color-gray-100: #eeeeee;
   --color-gray-200: #dedede;
+
+  --color-orange-50: #faede9;
+  --color-orange-100: #fcccbd;
 
   --color-page-bg: #fdfdfc;
 

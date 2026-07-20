@@ -18,7 +18,7 @@ export default function Section({
       className={
         noDivider
           ? className
-          : `${className} border-b border-gray-200`
+          : `${className} border-b border-gray-100`
       }
     >
       {children}

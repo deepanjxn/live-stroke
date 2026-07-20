@@ -1,10 +1,10 @@
 # LiveStroke
 
-Animated gradient borders for React buttons.
+Animated gradient borders for React.
 
 ## Overview
 
-LiveStroke is an opinionated React component library that adds beautifully animated gradient borders around React buttons.
+LiveStroke is an opinionated React component library that adds beautifully animated gradient borders around any React element.
 
 ## Project Structure
 
@@ -13,23 +13,18 @@ live-stroke/
 ├── packages/
 │   └── live-stroke/          # The live-stroke library package
 │       ├── src/
-│       │   ├── components/   # React components
-│       │   ├── hooks/        # Custom React hooks
-│       │   ├── lib/          # Core library logic
-│       │   ├── styles/       # CSS / style utilities
 │       │   ├── types/        # TypeScript type definitions
-│       │   ├── utils/        # Utility functions
 │       │   ├── LiveStroke.tsx
 │       │   └── index.ts
-│       ├── package.json
-│       ├── tsconfig.json
-│       └── tsup.config.ts
-├── playground/               # Vite React app for local development
+│       ├── dist/             # Built output (ESM, CJS, .d.ts)
+│       ├── tsup.config.ts
+│       └── package.json
+├── website/                  # Next.js documentation and playground
 │   ├── src/
+│   │   ├── app/
+│   │   └── components/
 │   ├── public/
-│   ├── package.json
-│   ├── vite.config.ts
-│   └── tsconfig.json
+│   └── package.json
 ├── package.json              # Workspace root
 ├── pnpm-workspace.yaml       # pnpm workspace definition
 ├── tsconfig.base.json        # Shared TypeScript configuration
@@ -44,7 +39,7 @@ live-stroke/
 This repository uses [pnpm workspaces](https://pnpm.io/workspaces). The workspace contains two packages:
 
 - **`live-stroke`** (`packages/live-stroke/`) — The published library.
-- **`playground`** (`playground/`) — A Vite React application for local development and testing.
+- **`website`** (`website/`) — A Next.js documentation site with an interactive playground.
 
 ## Development
 
@@ -64,7 +59,7 @@ pnpm install
 | Command            | Description                                       |
 | ------------------ | ------------------------------------------------- |
 | `pnpm build`       | Build the library package                         |
-| `pnpm dev`         | Start the playground dev server                   |
+| `pnpm dev`         | Start the website dev server                      |
 | `pnpm lint`        | Lint all packages                                 |
 | `pnpm format`      | Format code with Prettier                         |
 | `pnpm typecheck`   | Run TypeScript type checking across all packages  |
@@ -80,13 +75,33 @@ pnpm build
 
 This generates ESM, CommonJS, and TypeScript declaration files in `packages/live-stroke/dist/`.
 
-### Playground
+### Website
 
-The playground imports `live-stroke` via the pnpm workspace protocol (`workspace:*`). During development, Vite resolves `live-stroke` directly to the package source for instant HMR.
+The website imports `live-stroke` via the pnpm workspace protocol (`workspace:*`). During development, Next.js resolves `live-stroke` to the built dist.
 
 ```bash
 pnpm dev
 ```
+
+## Design Rationale
+
+### Minimum Opacity
+
+The minimum opacity is intentionally 10%.
+
+If the opacity reached 0%, both the stroke and the glow would completely disappear, making it seem like the component stopped rendering. Keeping a 10% minimum ensures the component always remains visible while still allowing users to understand the opacity control.
+
+### Glow Opacity
+
+The glow uses a fixed intensity of 20%.
+
+The glow is designed to be subtle. It adds depth around the component without becoming distracting or overpowering the stroke itself.
+
+### Transparent Border Architecture
+
+The component uses a transparent CSS border instead of an SVG-based solution.
+
+Using a transparent border allows the animated stroke to wrap around any child component while preserving native border radius behavior. It keeps the implementation lightweight, flexible, and easy to integrate with any React component without requiring SVG rendering.
 
 ## License
 

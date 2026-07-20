@@ -1,5 +1,27 @@
 import type { LiveStrokeProps } from "./types";
 
+const LS_STYLE_ID = "ls-styles";
+
+function injectLiveStrokeStyles(): void {
+  if (typeof document === "undefined") return;
+  if (document.getElementById(LS_STYLE_ID)) return;
+  const style = document.createElement("style");
+  style.id = LS_STYLE_ID;
+  style.textContent = `@property --ls-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 18deg;
+}
+@keyframes ls-spin {
+  to {
+    --ls-angle: 378deg;
+  }
+}`;
+  document.head.appendChild(style);
+}
+
+injectLiveStrokeStyles();
+
 const GRADIENT =
   "conic-gradient(from var(--ls-angle, 18deg), #F45523 0%, #00DA7C 20%, #3B5FFF 40%, #9A80C3 60%, #D7F986 80%, #F45523 100%)";
 
@@ -14,7 +36,7 @@ function gradientWithAlpha(alpha: number): string {
 }
 
 const STROKE_MAP = { sm: 1, md: 2, lg: 3 } as const;
-const DURATION_MAP = { slow: 5, normal: 3.5, fast: 2 } as const;
+const DURATION_MAP = { slow: 4, normal: 2.5, fast: 1.5 } as const;
 
 export function LiveStroke({
   children,
@@ -46,7 +68,7 @@ export function LiveStroke({
             backgroundClip: "border-box",
             backgroundRepeat: "no-repeat",
             filter: "blur(6px)",
-            opacity: gradientOpacity * 0.16,
+            opacity: gradientOpacity * 0.2,
             zIndex: 0,
           }}
         />

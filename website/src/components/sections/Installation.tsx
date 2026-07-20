@@ -7,7 +7,7 @@ export default function Installation() {
     <div>
       <h2 className="text-base font-medium text-primary">Installation</h2>
       <div className="mt-3">
-        <CodeBlock code={code} />
+        <CodeBlock code={code} copyCentered />
       </div>
     </div>
   );

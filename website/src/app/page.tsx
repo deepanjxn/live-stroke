@@ -17,7 +17,7 @@ export default function HomePage() {
         <UseCases />
         <Section>
           <Container>
-            <div className="p-6 space-y-20">
+            <div className="p-6 space-y-8">
               <Installation />
               <Usage />
               <Playground />
