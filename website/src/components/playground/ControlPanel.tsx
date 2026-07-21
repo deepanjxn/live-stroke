@@ -27,7 +27,7 @@ export default function ControlPanel({ state, onChange }: Props) {
     onChange({ ...state, ...partial });
 
   return (
-    <div className="flex w-[220px] flex-col gap-7 rounded-xl border border-gray-100 bg-white p-4">
+    <div className="flex w-full tablet:w-[220px] flex-col gap-7 rounded-xl border border-gray-100 bg-white p-4">
       <SnapSlider
         label="Stroke Size"
         marks={[

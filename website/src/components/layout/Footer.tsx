@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <Section as="footer" noDivider>
       <Container>
-        <div className="flex items-center justify-between px-6 py-6">
+        <div className="flex items-center justify-between px-5 tablet:px-6 py-3 tablet:py-6">
           <div className="flex items-center gap-2">
             <img
               src="/images/deepanjan-sen-image.webp"

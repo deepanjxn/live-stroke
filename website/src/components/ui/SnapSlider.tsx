@@ -28,7 +28,7 @@ export default function SnapSlider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-[6px] w-[188px] cursor-pointer appearance-none rounded-full
+        className="h-[6px] w-full tablet:w-[188px] cursor-pointer appearance-none rounded-full
           transition-shadow duration-150
           [&::-webkit-slider-thumb]:h-[16px]
           [&::-webkit-slider-thumb]:w-[16px]
@@ -44,7 +44,7 @@ export default function SnapSlider({
         }}
       />
       {!hideLabels && (
-        <div className="mt-1 flex w-[188px] justify-between">
+        <div className="mt-1 flex w-full tablet:w-[188px] justify-between">
           {marks.map((m) => (
             <span
               key={m.value}

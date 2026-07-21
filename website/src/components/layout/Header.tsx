@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className="border-b border-gray-100">
       <Container>
-        <div className="flex items-center justify-between px-6 pt-4 pb-4">
+        <div className="flex items-center justify-between px-5 tablet:px-6 py-3 tablet:pt-4 tablet:pb-4">
           <Image
             src="/images/logo.webp"
             alt="LiveStroke"

@@ -38,6 +38,9 @@
   --font-weight-medium: 500;
 
   --font-family-geist: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1025px;
 }
 
 body {

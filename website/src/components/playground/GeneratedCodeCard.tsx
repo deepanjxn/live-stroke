@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import CodeBlock from "../ui/CodeBlock";
 import type { PlaygroundState } from "./ControlPanel";
 
@@ -13,7 +14,22 @@ function formatProp(key: string, value: string | number | boolean): string {
   return `${key}={${value}}`;
 }
 
+function isMobile(): boolean {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(max-width: 767px)").matches;
+}
+
 export default function GeneratedCodeCard({ state }: Props) {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    setMobile(isMobile());
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e: MediaQueryListEvent) => setMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   const effectiveOpacity = Math.round(state.opacity * 0.9 + 10);
   const props = [
     { key: "strokeSize", value: state.strokeSize },
@@ -22,12 +38,30 @@ export default function GeneratedCodeCard({ state }: Props) {
     { key: "shadow", value: state.shadow },
   ];
 
-  const propString = props
-    .filter((p) => !(typeof p.value === "boolean" && p.value === false))
-    .map((p) => formatProp(p.key, p.value))
-    .join(" ");
+  const activeProps = props.filter(
+    (p) => !(typeof p.value === "boolean" && p.value === false)
+  );
 
-  const lines = [`<LiveStroke ${propString}>`, '  <button>Text goes here</button>', "</LiveStroke>"];
+  let lines: string[];
+  if (mobile) {
+    const propLines = activeProps.map((p) => `  ${formatProp(p.key, p.value)}`);
+    lines = [
+      "<LiveStroke",
+      ...propLines,
+      ">",
+      '  <button>Text goes here</button>',
+      "</LiveStroke>",
+    ];
+  } else {
+    const propString = activeProps
+      .map((p) => formatProp(p.key, p.value))
+      .join(" ");
+    lines = [
+      `<LiveStroke ${propString}>`,
+      '  <button>Text goes here</button>',
+      "</LiveStroke>",
+    ];
+  }
 
   return <CodeBlock code={lines.join("\n")} />;
 }
